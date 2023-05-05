@@ -1,3 +1,5 @@
+const perf = require('execution-time')();
+
 //========== Sum Zero ================== Complexity O(n^2)
 const addToZero = arr =>{
     if(arr.length > 1){
@@ -15,18 +17,31 @@ const addToZero = arr =>{
     }
 
 }
-
+perf.start();
 addToZero([]);
+let results = perf.stop();
+console.log("Add to zero", results.preciseWords);
+
 // -> False
 
+perf.start();
 addToZero([1]);
 // -> False
+results = perf.stop();
+console.log("Add to zero", results.preciseWords);
 
+perf.start();
 addToZero([1, 2, 3]);
 // -> False
+results = perf.stop();
+console.log("Add to zero", results.preciseWords);
 
+perf.start();
 addToZero([1, 2, 3, -2]);
 // -> True
+results = perf.stop();
+console.log("Add to zero", results.preciseWords);
+
 console.log('===========================')
 //========== Unique Characters ========= Complexity O(n)
 const hasUniqueChars = str =>{
@@ -39,11 +54,18 @@ const hasUniqueChars = str =>{
     return console.log(true)
 }
 
+perf.start();
 hasUniqueChars("Monday");
 // -> True
+results = perf.stop();
+console.log("Unique Chars", results.preciseWords);
 
+perf.start();
 hasUniqueChars("Moonday");
 // -> False
+results = perf.stop();
+console.log("Unique Chars", results.preciseWords);
+
 console.log('===========================')
 //========== Pangram Sentence ========== Complexity O(n)
 const isPangram = str =>{
@@ -51,16 +73,23 @@ const isPangram = str =>{
     let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
     for(i = 0; i < alphabet.length; i++){
         if (strLetters.indexOf(alphabet[i]) < 0) {
-            return false;
+            return console.log(false);
         }
     }
+    console.log(true)
 }
 
+perf.start();
 isPangram("The quick brown fox jumps over the lazy dog!");
 // -> True
+results = perf.stop();
+console.log("panagram", results.preciseWords);
 
+perf.start();
 isPangram("I like cats, but not mice");
 // -> False
+results = perf.stop();
+console.log("panagram", results.preciseWords);
 
 console.log('===========================')
 //========== Longest Word ============== Complexity O(n^3)
@@ -80,8 +109,13 @@ const findLongestWord = arr =>{
     }
     console.log(longest)
 }
-
+perf.start();
 findLongestWord(["hi", "hello"]);
+results = perf.stop();
+console.log("longest runtime", results.preciseWords);
 // -> 5
+perf.start();
 findLongestWord(["hi", "hello",'he','Alongerword']);
+results = perf.stop();
+console.log("longest runtime", results.preciseWords);
 // -> 11
